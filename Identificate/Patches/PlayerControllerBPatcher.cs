@@ -4,6 +4,7 @@ using IdentificateIdentificate.Managers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Identificate.Patches
 {
@@ -38,16 +39,38 @@ namespace Identificate.Patches
             //    }
             //}
 
-            //__instance.movementAudio.PlayOneShot(IdentificateIdentificateBase.SoundFX[0]);
+            //__instance.movementAudio.PlayOneShot(Plugin.SoundFX[0]);
+
+            //if (__instance.IsHost || __instance.IsServer)
+            //{
+            //    //NetworkManagerIdentificate.instance.PlayIdentificateClientRpc(__instance.movementAudio);
+            //    NetworkManagerIdentificate.instance.StartClientSound(__instance.movementAudio);
+
+            //}
+            //else
+            //{
+            //    //NetworkManagerIdentificate.instance.RequestPlayIdentificateServerRpc(__instance.movementAudio);
+            //    NetworkManagerIdentificate.instance.StartServerSound(__instance.movementAudio);
+            //}
+
+            if (!__instance.IsOwner || __instance.isPlayerDead)
+            {
+                return;
+            }
 
             if (__instance.IsHost || __instance.IsServer)
             {
-                NetworkManagerIdentificate.instance.PlayIdentificateClientRpc();
+                //NetworkManagerIdentificate.instance.PlaySoundOtherPlayers(__instance);
+                NetworkManagerIdentificate.instance.PlaySoundIdentificateClientRpc(__instance.playerClientId);
+
             }
             else
             {
-                NetworkManagerIdentificate.instance.RequestPlayIdentificateServerRpc();
+                //NetworkManagerIdentificate.instance.PlaySoundServer(__instance);
+                NetworkManagerIdentificate.instance.PlaySoundIdentificateServerRpc(__instance.playerClientId);
             }
+
+
 
         }
     }

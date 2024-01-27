@@ -23,6 +23,9 @@ namespace Identificate
 
         public GameObject netManagerPrefab;
 
+        internal static AudioClip[] SoundFX;
+        internal static AssetBundle Bundle;
+
         void Awake()
         {
             instance = this;
@@ -56,6 +59,21 @@ namespace Identificate
             else
             {
                 mls.LogInfo("(º`)< Error loading NetworkBundle");
+            }
+
+            SoundFX = new AudioClip[1];
+            string FolderLocation = instance.Info.Location;
+            FolderLocation = FolderLocation.TrimEnd("IdentificateIdentificateBase.dll".ToCharArray());
+            Bundle = AssetBundle.LoadFromFile(FolderLocation + "identificate");
+
+            if (Bundle != null)
+            {
+                mls.LogInfo("(º)< Sound asset bundle loaded");
+                SoundFX = Bundle.LoadAllAssets<AudioClip>();
+            }
+            else
+            {
+                mls.LogInfo("(º`)< Error loading Sound asset bundle");
             }
 
             harmony.PatchAll();
