@@ -21,14 +21,29 @@ namespace Identificate.Patches
                 return;
             }
 
-            if (__instance.IsHost || __instance.IsServer)
+            if (__instance.movementAudio.clip != null && __instance.movementAudio.clip == Plugin.SoundFX[0] && __instance.movementAudio.isPlaying)
             {
-                NetworkManagerIdentificate.instance.PlaySoundIdentificateClientRpc(__instance.playerClientId);
+                if (__instance.IsHost || __instance.IsServer)
+                {
+                    NetworkManagerIdentificate.instance.StopSoundIdentificateClientRpc(__instance.playerClientId);
 
+                }
+                else
+                {
+                    NetworkManagerIdentificate.instance.StopSoundIdentificateServerRpc(__instance.playerClientId);
+                }
             }
             else
             {
-                NetworkManagerIdentificate.instance.PlaySoundIdentificateServerRpc(__instance.playerClientId);
+                if (__instance.IsHost || __instance.IsServer)
+                {
+                    NetworkManagerIdentificate.instance.PlaySoundIdentificateClientRpc(__instance.playerClientId);
+
+                }
+                else
+                {
+                    NetworkManagerIdentificate.instance.PlaySoundIdentificateServerRpc(__instance.playerClientId);
+                }
             }
         }
     }
