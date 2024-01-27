@@ -52,9 +52,9 @@ namespace Identificate
 
             if (bundle != null)
             {
-                mls.LogInfo("(º)< Network bundle loaded");
                 netManagerPrefab = bundle.LoadAsset<GameObject>("Assets/Netcode/NetworkManagerIdentificate.prefab");
                 netManagerPrefab.AddComponent<NetworkManagerIdentificate>();
+                mls.LogInfo("(º)< Network bundle loaded");
             }
             else
             {
@@ -68,8 +68,8 @@ namespace Identificate
 
             if (Bundle != null)
             {
-                mls.LogInfo("(º)< Sound asset bundle loaded");
                 SoundFX = Bundle.LoadAllAssets<AudioClip>();
+                mls.LogInfo("(º)< Sound asset bundle loaded");
             }
             else
             {
