@@ -1,0 +1,9 @@
+{
+    "name": "IdentificateIdentificate",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/CabyDJ/Identificate",
+    "description": "Pulsa 2 para ordenarle a tus muchacho que se identifiquen.",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100"
+    ]
+}
