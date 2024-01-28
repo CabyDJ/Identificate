@@ -21,29 +21,39 @@ namespace Identificate.Patches
                 return;
             }
 
-            if (__instance.movementAudio.clip != null && __instance.movementAudio.clip == Plugin.SoundFX[0] && __instance.movementAudio.isPlaying)
+            if (__instance.IsHost || __instance.IsServer)
             {
-                if (__instance.IsHost || __instance.IsServer)
+                if (IsPlayingAudio(__instance))
                 {
                     NetworkManagerIdentificate.instance.StopSoundIdentificateClientRpc(__instance.playerClientId);
-
                 }
                 else
                 {
-                    NetworkManagerIdentificate.instance.StopSoundIdentificateServerRpc(__instance.playerClientId);
+                    NetworkManagerIdentificate.instance.PlaySoundIdentificateClientRpc(__instance.playerClientId);
                 }
             }
             else
             {
-                if (__instance.IsHost || __instance.IsServer)
+                if (IsPlayingAudio(__instance))
                 {
-                    NetworkManagerIdentificate.instance.PlaySoundIdentificateClientRpc(__instance.playerClientId);
-
+                    NetworkManagerIdentificate.instance.StopSoundIdentificateServerRpc(__instance.playerClientId);
                 }
                 else
                 {
                     NetworkManagerIdentificate.instance.PlaySoundIdentificateServerRpc(__instance.playerClientId);
                 }
+            }
+        }
+
+        private static bool IsPlayingAudio(PlayerControllerB __instance)
+        {
+            if (__instance.movementAudio.clip != null && __instance.movementAudio.clip == Plugin.SoundFX[0] && __instance.movementAudio.isPlaying)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
