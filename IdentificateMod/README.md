@@ -1,1 +1,1 @@
-Pulsa 2 para ordenarle a tus muchacho que se identifiquen.
+Pulsa 2 para ordenarle a tus muchacho que se identifiquen (util para cuando sospeches que tu compa es un mimic)

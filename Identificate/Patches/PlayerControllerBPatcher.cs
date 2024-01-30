@@ -16,7 +16,7 @@ namespace Identificate.Patches
 
         static void Emote2_performed_Patch(PlayerControllerB __instance)
         {
-            if (!__instance.IsOwner || __instance.isPlayerDead)
+            if (!__instance.IsOwner || __instance.isPlayerDead || __instance.isTypingChat || __instance.isClimbingLadder || __instance.inTerminalMenu)
             {
                 return;
             }
